@@ -2,6 +2,7 @@ package com.example.StaffManagement.Controller;
 
 import com.example.StaffManagement.Repository.Staff;
 import com.example.StaffManagement.Service.StaffService;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -13,29 +14,23 @@ public class StaffController {
 
     private final StaffService service;
 
-    public StaffController(StaffService service) {
-        this.service = service;
-    }
+    public StaffController(StaffService service) { this.service = service; }
 
     @PostMapping("/add")
-    public Staff addStaff(@RequestBody Staff staff) {
+    public Staff addOrUpdateStaff(@RequestBody Staff staff) {
         return service.addStaff(staff);
     }
 
-    @GetMapping("/list")
-    public List<Staff> getAllStaff() {
-        return service.getAllStaff();
+    @PostMapping("/login")
+    public Staff login(@RequestParam String username, @RequestParam String password) {
+        return service.login(username, password);
     }
+
+    @GetMapping("/list")
+    public List<Staff> getAllStaff() { return service.getAllStaff(); }
 
     @GetMapping("/{id}")
-    public Optional<Staff> getStaff(@PathVariable Long id) {
-        return service.getStaff(id);
-    }
-
-    @PutMapping("/update/{id}")
-    public Staff updateStaff(@PathVariable Long id, @RequestBody Staff staff) {
-        return service.updateStaff(id, staff);
-    }
+    public Optional<Staff> getStaff(@PathVariable Long id) { return service.getStaff(id); }
 
     @DeleteMapping("/delete/{id}")
     public String deleteStaff(@PathVariable Long id) {
