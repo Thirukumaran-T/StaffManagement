@@ -2,6 +2,8 @@ package com.example.StaffManagement.Repository;
 
 import jakarta.persistence.*;
 
+import java.math.BigInteger;
+
 @Entity
 @Table(name = "staff")
 public class Staff {
@@ -12,7 +14,7 @@ public class Staff {
     @Enumerated(EnumType.STRING)
     private StaffRole role; // CHEF, WAITER, MANAGER
 
-    private String phone;
+    private BigInteger phone;
 
     private String email;
 
@@ -27,8 +29,8 @@ public class Staff {
     public StaffRole getRole() { return role; }
     public void setRole(StaffRole role) { this.role = role; }
 
-    public String getPhone() { return phone; }
-    public void setPhone(String phone) { this.phone = phone; }
+    public BigInteger getPhone() { return phone; }
+    public void setPhone(BigInteger phone) { this.phone = phone; }
 
     public String getEmail() { return email; }
     public void setEmail(String email) { this.email = email; }
